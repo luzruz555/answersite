@@ -535,6 +535,109 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    /* 숨겨진 매트릭스 입력 (푸터 최하단) */
+    .hidden-trigger {
+      width: 100%;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .hidden-input-area {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hidden-input-area.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .hidden-matrix-input {
+      width: 200px;
+      padding: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .hidden-matrix-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    /* 뉴스 기사 모달 */
+    .news-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 2500;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .news-modal.show {
+      display: flex;
+    }
+
+    .news-modal-content {
+      background: var(--bg);
+      max-width: 700px;
+      width: 100%;
+      padding: 40px;
+      border-radius: 10px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .news-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      color: var(--gray);
+      transition: color 0.3s;
+    }
+
+    .news-close:hover {
+      color: var(--text);
+    }
+
+    .news-modal-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      line-height: 1.4;
+      padding-right: 30px;
+    }
+
+    .news-modal-img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      background: var(--card-bg);
+      min-height: 200px;
+    }
+
+    .news-modal-body {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text);
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -770,7 +873,26 @@
     <div class="footer-extra">
       [여기에 추가 텍스트 입력 - 아주 작게 표시됨]
     </div>
+    
+    <!-- 숨겨진 매트릭스 입력창 (최하단 탭하면 나타남) -->
+    <div class="hidden-trigger" onclick="_0xshowHiddenInput()"></div>
+    <div class="hidden-input-area" id="hiddenInputArea">
+      <input type="text" class="hidden-matrix-input" id="hiddenMatrixInput" placeholder="..." onkeyup="_0xcheckHiddenInput(event)">
+    </div>
   </footer>
+
+  <!-- 뉴스 기사 모달 (전원버튼 코드 입력 시) -->
+  <div class="news-modal" id="newsModal">
+    <div class="news-modal-content">
+      <span class="news-close" onclick="_0xcloseNews()">×</span>
+      <h2 class="news-modal-title">[기사 제목 입력]</h2>
+      <img src="" alt="기사 이미지" class="news-modal-img">
+      <!-- 이미지: src="news-image.jpg" -->
+      <div class="news-modal-body">
+        [여기에 기사 내용 입력]
+      </div>
+    </div>
+  </div>
 
   <script>
     // ============================================================
@@ -874,10 +996,40 @@
       var _0xin = document.getElementById('codeInput').value.toLowerCase();
       if(_0xin === _0xc0de){
         _0xclose();
-        alert('ACCESS GRANTED'); // 여기에 원하는 동작 추가
+        _0xopenNews(); // 뉴스 기사 열기
       } else {
         document.getElementById('codeInput').style.borderColor = '#ff0000';
         setTimeout(function(){ document.getElementById('codeInput').style.borderColor = '#333'; }, 1000);
+      }
+    }
+    
+    // 뉴스 모달 열기
+    function _0xopenNews(){
+      document.getElementById('newsModal').classList.add('show');
+    }
+    
+    // 뉴스 모달 닫기
+    function _0xcloseNews(){
+      document.getElementById('newsModal').classList.remove('show');
+    }
+    
+    // 숨겨진 입력창 표시 (푸터 최하단 탭)
+    function _0xshowHiddenInput(){
+      var area = document.getElementById('hiddenInputArea');
+      area.classList.toggle('show');
+      if(area.classList.contains('show')){
+        document.getElementById('hiddenMatrixInput').focus();
+      }
+    }
+    
+    // 숨겨진 입력창에서 매트릭스 키 확인
+    function _0xcheckHiddenInput(e){
+      if(e.key !== 'Enter') return;
+      var val = document.getElementById('hiddenMatrixInput').value;
+      if(val === _0xmatrixKey){
+        document.getElementById('hiddenInputArea').classList.remove('show');
+        document.getElementById('hiddenMatrixInput').value = '';
+        _0xopenMatrix();
       }
     }
     
@@ -954,6 +1106,7 @@
       if(e.key === 'Escape'){
         _0xclose();
         _0xcloseMatrix();
+        _0xcloseNews();
       }
       if(e.key === 'Enter' && document.getElementById('codeModal').classList.contains('show')){
         _0xverify();
