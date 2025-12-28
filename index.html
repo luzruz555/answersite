@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIDE - Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --accent: #4a90d9;
+      --gray: #666;
+      --border: #e0e0e0;
+      --card-bg: #f8f8f8;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0a0a0a;
+      --text: #f0f0f0;
+      --accent: #6ab0ff;
+      --gray: #999;
+      --border: #333;
+      --card-bg: #1a1a1a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: all 0.3s ease;
+    }
+
+    /* 헤더 */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* 숨겨진 전원 버튼 (코드 입력) */
+    .power-btn {
+      width: 30px;
+      height: 30px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      opacity: 0.3;
+    }
+
+    .power-btn:hover {
+      opacity: 1;
+      border-color: var(--accent);
+    }
+
+    .power-btn::before {
+      content: '';
+      width: 2px;
+      height: 10px;
+      background: var(--text);
+      position: absolute;
+      transform: translateY(-8px);
+    }
+
+    .power-btn::after {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      border-top-color: transparent;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .music-btn {
+      padding: 8px 16px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* 다크모드 토글 */
+    .theme-toggle {
+      width: 50px;
+      height: 26px;
+      background: var(--border);
+      border-radius: 13px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle::after {
+      content: '☀️';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: var(--accent);
+    }
+
+    [data-theme="dark"] .theme-toggle::after {
+      content: '🌙';
+      left: 27px;
+    }
+
+    /* 탭 네비게이션 */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 30px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      padding: 12px 30px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 8px;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* 컨텐츠 영역 */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 30px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      margin-bottom: 40px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .text-block {
+      margin: 30px 0;
+      line-height: 1.8;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .text-block h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+
+    .image-single {
+      width: 100%;
+      max-width: 600px;
+      margin: 30px auto;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      min-height: 200px;
+    }
+
+    .image-row {
+      display: flex;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .image-row.three img, .image-row.three .img-placeholder {
+      flex: 1;
+      min-width: 150px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    .image-row.four img, .image-row.four .img-placeholder {
+      flex: 1 1 calc(25% - 12px);
+      min-width: 100px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    .img-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+      font-size: 12px;
+    }
+
+    /* 다크모드에서만 보이는 텍스트 */
+    .dark-only-text {
+      color: var(--bg);
+      font-size: 12px;
+      margin: 20px 0;
+      transition: color 0.3s;
+      user-select: none;
+    }
+
+    [data-theme="dark"] .dark-only-text {
+      color: #1a1a1a;
+    }
+
+    /* 푸터 */
+    footer {
+      text-align: center;
+      padding: 60px 30px;
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+    }
+
+    .footer-info {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 2;
+    }
+
+    .footer-extra {
+      margin-top: 30px;
+      font-size: 10px;
+      color: var(--gray);
+      opacity: 0.5;
+    }
+
+    /* F12 경고 */
+    .devtools-warning {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .devtools-warning.show { display: flex; }
+
+    .devtools-warning p {
+      font-family: 'Space Mono', monospace;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    /* 코드 입력 모달 */
+    .code-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .code-modal.show { display: flex; }
+
+    .code-box {
+      background: #111;
+      border: 1px solid #333;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .code-box h3 {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .code-input {
+      width: 250px;
+      padding: 15px;
+      background: #000;
+      border: 1px solid #333;
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 4px;
+    }
+
+    .code-input:focus {
+      outline: none;
+      border-color: #4a90d9;
+    }
+
+    .code-btns {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .code-btn {
+      padding: 10px 25px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      border-radius: 5px;
+    }
+
+    .code-btn.cancel { background: #333; color: #999; }
+    .code-btn.confirm { background: #4a90d9; color: #fff; }
+
+    /* 매트릭스 화면 */
+    .matrix-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
+      z-index: 3000;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .matrix-screen.show { display: flex; }
+
+    .matrix-rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .matrix-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .matrix-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 24px;
+      color: #00ff00;
+      margin-bottom: 30px;
+      animation: matrixGlow 1s infinite alternate;
+    }
+
+    @keyframes matrixGlow {
+      from { text-shadow: 0 0 10px #00ff00; }
+      to { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
+    }
+
+    .matrix-subtitle {
+      font-size: 12px;
+      color: #006600;
+      margin-bottom: 30px;
+    }
+
+    .matrix-input {
+      width: 300px;
+      padding: 15px;
+      background: transparent;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      font-family: 'Space Mono', monospace;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .matrix-input:focus {
+      outline: none;
+      box-shadow: 0 0 20px rgba(0,255,0,0.3);
+    }
+
+    .matrix-input::placeholder {
+      color: #004400;
+    }
+
+    .matrix-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #00ff00;
+      font-size: 30px;
+      cursor: pointer;
+      opacity: 0.5;
+    }
+
+    .matrix-close:hover { opacity: 1; }
+
+    /* 환자 정보 화면 */
+    .patient-info {
+      display: none;
+      margin-top: 30px;
+      padding: 30px;
+      border: 1px solid #00ff00;
+      background: rgba(0,255,0,0.05);
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .patient-info.show {
+      display: block;
+      animation: matrixReveal 0.5s ease;
+    }
+
+    @keyframes matrixReveal {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .patient-info img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px solid #00ff00;
+      margin-bottom: 20px;
+    }
+
+    .patient-info h4 {
+      color: #00ff00;
+      font-family: 'Space Mono', monospace;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .patient-info .diagnosis {
+      color: #ff0000;
+      font-size: 14px;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: rgba(255,0,0,0.1);
+      border-left: 3px solid #ff0000;
+    }
+
+    .patient-info .details {
+      color: #00cc00;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* 숨겨진 입력 감지용 */
+    .hidden-input-catcher {
+      position: fixed;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <!-- F12 경고 -->
+  <div class="devtools-warning" id="devtoolsWarning">
+    <p>뭘 찾으려는 거죠?</p>
+  </div>
+
+  <!-- 코드 입력 모달 -->
+  <div class="code-modal" id="codeModal">
+    <div class="code-box">
+      <h3>ACCESS CODE</h3>
+      <input type="text" class="code-input" id="codeInput" placeholder="_ _ _ _ _" maxlength="20">
+      <div class="code-btns">
+        <button class="code-btn cancel" onclick="_0xclose()">Cancel</button>
+        <button class="code-btn confirm" onclick="_0xverify()">Enter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 매트릭스 화면 -->
+  <div class="matrix-screen" id="matrixScreen">
+    <span class="matrix-close" onclick="_0xcloseMatrix()">×</span>
+    <canvas class="matrix-rain" id="matrixCanvas"></canvas>
+    <div class="matrix-content">
+      <h2 class="matrix-title">환자분의 아이디를 입력해주세요.</h2>
+      <p class="matrix-subtitle">환자분의 개인정보는 수집되지 않습니다.</p>
+      <input type="text" class="matrix-input" id="patientInput" placeholder="PATIENT ID" onkeyup="_0xcheckPatient(event)">
+      
+      <!-- 환자 1 -->
+      <div class="patient-info" id="patient1">
+        <img src="" alt="Patient" class="patient-img">
+        <!-- 이미지: src="환자1이미지.jpg" -->
+        <h4>[환자명 입력]</h4>
+        <div class="diagnosis">[병명 입력]</div>
+        <div class="details">[자세한 특징 입력]</div>
+      </div>
+
+      <!-- 환자 2 -->
+      <div class="patient-info" id="patient2">
+        <img src="" alt="Patient" class="patient-img">
+        <h4>[환자명 입력]</h4>
+        <div class="diagnosis">[병명 입력]</div>
+        <div class="details">[자세한 특징 입력]</div>
+      </div>
+
+      <!-- 환자 3 -->
+      <div class="patient-info" id="patient3">
+        <img src="" alt="Patient" class="patient-img">
+        <h4>[환자명 입력]</h4>
+        <div class="diagnosis">[병명 입력]</div>
+        <div class="details">[자세한 특징 입력]</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 헤더 -->
+  <header>
+    <div class="header-left">
+      <div class="power-btn" onclick="_0xopenCode()"></div>
+      <span class="logo">SIDE</span>
+    </div>
+    <div class="header-right">
+      <button class="music-btn" onclick="_0xmusic()">
+        🎵 노래 추천
+      </button>
+      <div class="theme-toggle" onclick="_0xtheme()"></div>
+    </div>
+  </header>
+
+  <!-- 탭 -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="_0xtab('purelight')">PURELIGHT</button>
+    <button class="tab-btn" onclick="_0xtab('neostar')">NEOSTAR</button>
+    <button class="tab-btn" onclick="_0xtab('eden')">EDEN</button>
+  </div>
+
+  <!-- 컨텐츠 -->
+  <main class="content">
+    
+    <!-- ========================================
+         PURELIGHT 해답
+         구조: 글-사진-글-사진-글
+         ======================================== -->
+    <div class="tab-content active" id="tab-purelight">
+      <h2 class="section-title">PURELIGHT 해답</h2>
+      
+      <div class="text-block">
+        <h3>[해답 제목 1]</h3>
+        <p>[여기에 퓨어라이트 해답 내용 1 입력]</p>
+      </div>
+
+      <img src="" alt="해답 이미지 1" class="image-single">
+      <!-- 이미지: src="purelight1.jpg" -->
+
+      <div class="text-block">
+        <h3>[해답 제목 2]</h3>
+        <p>[여기에 퓨어라이트 해답 내용 2 입력]</p>
+      </div>
+
+      <img src="" alt="해답 이미지 2" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 3]</h3>
+        <p>[여기에 퓨어라이트 해답 내용 3 입력]</p>
+      </div>
+
+      <!-- 다크모드에서만 보이는 숨겨진 텍스트 -->
+      <p class="dark-only-text">[다크모드 숨겨진 메시지 - 퓨어라이트]</p>
+    </div>
+
+    <!-- ========================================
+         NEOSTAR 해답
+         구조: 글, 사진3개, 사진-글-사진-글
+         ======================================== -->
+    <div class="tab-content" id="tab-neostar">
+      <h2 class="section-title">NEOSTAR 해답</h2>
+      
+      <div class="text-block">
+        <h3>[해답 제목 1]</h3>
+        <p>[여기에 네오스타 해답 내용 1 입력]</p>
+      </div>
+
+      <div class="image-row three">
+        <div class="img-placeholder">이미지 1</div>
+        <div class="img-placeholder">이미지 2</div>
+        <div class="img-placeholder">이미지 3</div>
+        <!-- 교체: <img src="neostar1.jpg"> -->
+      </div>
+
+      <img src="" alt="해답 이미지" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 2]</h3>
+        <p>[여기에 네오스타 해답 내용 2 입력]</p>
+      </div>
+
+      <img src="" alt="해답 이미지" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 3]</h3>
+        <p>[여기에 네오스타 해답 내용 3 입력]</p>
+      </div>
+
+      <!-- 다크모드에서만 보이는 숨겨진 텍스트 -->
+      <p class="dark-only-text">[다크모드 숨겨진 메시지 - 네오스타]</p>
+    </div>
+
+    <!-- ========================================
+         EDEN 해답
+         구조: 글-사진 반복 11번, 사진8개(4x2), 글-사진-글
+         ======================================== -->
+    <div class="tab-content" id="tab-eden">
+      <h2 class="section-title">EDEN 해답</h2>
+      
+      <div class="text-block">
+        <h3>[해답 제목 1]</h3>
+        <p>[여기에 에덴 해답 내용 1 입력]</p>
+      </div>
+      <img src="" alt="해답 이미지 1" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 2]</h3>
+        <p>[여기에 에덴 해답 내용 2 입력]</p>
+      </div>
+      <img src="" alt="해답 이미지 2" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 3]</h3>
+        <p>[여기에 에덴 해답 내용 3 입력]</p>
+      </div>
+      <img src="" alt="해답 이미지 3" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 4]</h3>
+        <p>[여기에 에덴 해답 내용 4 입력]</p>
+      </div>
+      <img src="" alt="해답 이미지 4" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 5]</h3>
+        <p>[여기에 에덴 해답 내용 5 입력]</p>
+      </div>
+      <img src="" alt="해답 이미지 5" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 6]</h3>
+        <p>[여기에 에덴 해답 내용 6 입력]</p>
+      </div>
+
+      <!-- 이미지 8개 (4x2) -->
+      <div class="image-row four">
+        <div class="img-placeholder">1</div>
+        <div class="img-placeholder">2</div>
+        <div class="img-placeholder">3</div>
+        <div class="img-placeholder">4</div>
+      </div>
+      <div class="image-row four">
+        <div class="img-placeholder">5</div>
+        <div class="img-placeholder">6</div>
+        <div class="img-placeholder">7</div>
+        <div class="img-placeholder">8</div>
+      </div>
+
+      <div class="text-block">
+        <h3>[해답 제목 7]</h3>
+        <p>[여기에 에덴 해답 내용 7 입력]</p>
+      </div>
+      <img src="" alt="해답 이미지" class="image-single">
+
+      <div class="text-block">
+        <h3>[해답 제목 8]</h3>
+        <p>[여기에 에덴 해답 내용 8 입력]</p>
+      </div>
+
+      <!-- 다크모드에서만 보이는 숨겨진 텍스트 -->
+      <p class="dark-only-text">[다크모드 숨겨진 메시지 - 에덴]</p>
+    </div>
+
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-info">
+      made by scaredmole(luz_555)<br>
+      designed by scaredmole(luz_555)<br>
+      diagnosis by Han_seojin<br>
+      <br>
+      Thanks for watching.<br>
+      <br>
+      - EDEN and scaredmole(luz_555) -
+    </div>
+    <div class="footer-extra">
+      [여기에 추가 텍스트 입력 - 아주 작게 표시됨]
+    </div>
+  </footer>
+
+  <script>
+    // ============================================================
+    // 🔒 난독화된 코드
+    // ============================================================
+    
+    // 변수명 난독화
+    var _0x5a8f=["\x6C\x69\x67\x68\x74","\x64\x61\x72\x6B","\x74\x68\x65\x6D\x65","\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x62\x6F\x64\x79","\x64\x61\x74\x61\x2D\x74\x68\x65\x6D\x65"];
+    var _0x7c2d=["\x73\x68\x6F\x77","\x63\x6C\x61\x73\x73\x4C\x69\x73\x74"];
+    
+    // 숨겨진 코드들 (난독화)
+    var _0xc0de = atob('c2lkZXNvbHV0aW9u'); // 코드 입력 정답
+    var _0xmus1c = ''; // 노래 링크 - 여기에 입력: 'https://youtube.com/...'
+    var _0xk3y = '\u110C\u1163\u11BC\u1105\u1162\u11B7\u1109\u1162\u11BC\u1100\u1173'; // 매트릭스 키
+    var _0xp4t1 = atob(''); // 환자1 아이디 - btoa('아이디')로 변환해서 입력
+    var _0xp4t2 = atob(''); // 환자2 아이디
+    var _0xp4t3 = atob(''); // 환자3 아이디
+    
+    // 키 입력 버퍼
+    var _0xbuff = '';
+    var _0xmatrixKey = 'ㅈ디채ㅡㄷ샏ㅇ두';
+    
+    // F12 감지
+    (function(){
+      var _0xth = 160;
+      var _0xopen = false;
+      setInterval(function(){
+        var _0xw = window['\x6F\x75\x74\x65\x72\x57\x69\x64\x74\x68'] - window['\x69\x6E\x6E\x65\x72\x57\x69\x64\x74\x68'] > _0xth;
+        var _0xh = window['\x6F\x75\x74\x65\x72\x48\x65\x69\x67\x68\x74'] - window['\x69\x6E\x6E\x65\x72\x48\x65\x69\x67\x68\x74'] > _0xth;
+        if(_0xw || _0xh){
+          if(!_0xopen){
+            _0xopen = true;
+            document['\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64']('devtoolsWarning')[_0x7c2d[1]]['\x61\x64\x64'](_0x7c2d[0]);
+          }
+        } else {
+          if(_0xopen){
+            _0xopen = false;
+            document['\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64']('devtoolsWarning')[_0x7c2d[1]]['\x72\x65\x6D\x6F\x76\x65'](_0x7c2d[0]);
+          }
+        }
+      }, 500);
+    })();
+    
+    // 키보드 방지
+    document['\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72']('\x6B\x65\x79\x64\x6F\x77\x6E', function(e){
+      if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'u')){
+        e.preventDefault();
+        document.getElementById('devtoolsWarning').classList.add('show');
+        setTimeout(function(){ document.getElementById('devtoolsWarning').classList.remove('show'); }, 2000);
+      }
+      
+      // 매트릭스 키 감지
+      _0xbuff += e.key;
+      if(_0xbuff.length > 20) _0xbuff = _0xbuff.slice(-20);
+      if(_0xbuff.includes(_0xmatrixKey)){
+        _0xbuff = '';
+        _0xopenMatrix();
+      }
+    });
+    
+    // 우클릭 방지
+    document['\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72']('\x63\x6F\x6E\x74\x65\x78\x74\x6D\x65\x6E\x75', function(e){ e.preventDefault(); });
+    
+    // 콘솔 경고
+    console.log('%c⚠️', 'font-size:50px');
+    console.log('%c뭘 찾으려는 거죠?', 'font-size:20px;color:#ff0000;');
+    
+    // ============================================================
+    // 함수들
+    // ============================================================
+    
+    // 테마 토글
+    function _0xtheme(){
+      var _0xb = document[_0x5a8f[5]];
+      var _0xc = _0xb[_0x5a8f[4]](_0x5a8f[6]);
+      _0xb[_0x5a8f[3]](_0x5a8f[6], _0xc === _0x5a8f[0] ? _0x5a8f[1] : _0x5a8f[0]);
+    }
+    
+    // 탭 전환
+    function _0xtab(id){
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
+      event.target.classList.add('active');
+      document.getElementById('tab-' + id).classList.add('active');
+    }
+    
+    // 코드 모달 열기
+    function _0xopenCode(){
+      document.getElementById('codeModal').classList.add('show');
+      document.getElementById('codeInput').focus();
+    }
+    
+    // 코드 모달 닫기
+    function _0xclose(){
+      document.getElementById('codeModal').classList.remove('show');
+      document.getElementById('codeInput').value = '';
+    }
+    
+    // 코드 검증
+    function _0xverify(){
+      var _0xin = document.getElementById('codeInput').value.toLowerCase();
+      if(_0xin === _0xc0de){
+        _0xclose();
+        alert('ACCESS GRANTED'); // 여기에 원하는 동작 추가
+      } else {
+        document.getElementById('codeInput').style.borderColor = '#ff0000';
+        setTimeout(function(){ document.getElementById('codeInput').style.borderColor = '#333'; }, 1000);
+      }
+    }
+    
+    // 노래 링크
+    function _0xmusic(){
+      if(_0xmus1c){
+        window.open(_0xmus1c, '_blank');
+      } else {
+        alert('노래 링크가 설정되지 않았습니다.');
+      }
+    }
+    
+    // 매트릭스 화면 열기
+    function _0xopenMatrix(){
+      document.getElementById('matrixScreen').classList.add('show');
+      _0xinitMatrix();
+      document.getElementById('patientInput').focus();
+    }
+    
+    // 매트릭스 화면 닫기
+    function _0xcloseMatrix(){
+      document.getElementById('matrixScreen').classList.remove('show');
+      document.querySelectorAll('.patient-info').forEach(function(p){ p.classList.remove('show'); });
+      document.getElementById('patientInput').value = '';
+    }
+    
+    // 매트릭스 비 효과
+    function _0xinitMatrix(){
+      var canvas = document.getElementById('matrixCanvas');
+      var ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      var chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+      chars = chars.split('');
+      var drops = [];
+      for(var i = 0; i < canvas.width/14; i++) drops[i] = 1;
+      
+      function draw(){
+        ctx.fillStyle = 'rgba(0,0,0,0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#0f0';
+        ctx.font = '14px monospace';
+        for(var i = 0; i < drops.length; i++){
+          var text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * 14, drops[i] * 14);
+          if(drops[i] * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 35);
+    }
+    
+    // 환자 확인
+    function _0xcheckPatient(e){
+      if(e.key !== 'Enter') return;
+      var _0xid = document.getElementById('patientInput').value.toLowerCase();
+      
+      document.querySelectorAll('.patient-info').forEach(function(p){ p.classList.remove('show'); });
+      
+      // 환자 ID 체크 (난독화)
+      // 여기에 환자 아이디 설정: _0xp4t1, _0xp4t2, _0xp4t3 변수에 btoa('아이디') 형태로 입력
+      if(_0xp4t1 && _0xid === _0xp4t1){
+        document.getElementById('patient1').classList.add('show');
+      } else if(_0xp4t2 && _0xid === _0xp4t2){
+        document.getElementById('patient2').classList.add('show');
+      } else if(_0xp4t3 && _0xid === _0xp4t3){
+        document.getElementById('patient3').classList.add('show');
+      }
+    }
+    
+    // ESC로 모달 닫기
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        _0xclose();
+        _0xcloseMatrix();
+      }
+      if(e.key === 'Enter' && document.getElementById('codeModal').classList.contains('show')){
+        _0xverify();
+      }
+    });
+  </script>
+</body>
+</html>
