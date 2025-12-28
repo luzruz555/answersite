@@ -121,7 +121,7 @@
       transform: scale(1.05);
     }
 
-    /* 다크모드 토글 */
+    
     .theme-toggle {
       width: 50px;
       height: 26px;
@@ -271,7 +271,7 @@
       font-size: 12px;
     }
 
-    /* 다크모드에서만 보이는 텍스트 */
+  
     .dark-only-text {
       color: var(--bg);
       font-size: 12px;
@@ -305,7 +305,7 @@
       opacity: 0.5;
     }
 
-    /* F12 경고 */
+  
     .devtools-warning {
       display: none;
       position: fixed;
@@ -327,7 +327,7 @@
       color: #fff;
     }
 
-    /* 코드 입력 모달 */
+   
     .code-modal {
       display: none;
       position: fixed;
@@ -393,7 +393,7 @@
     .code-btn.cancel { background: #333; color: #999; }
     .code-btn.confirm { background: #4a90d9; color: #fff; }
 
-    /* 매트릭스 화면 */
+    
     .matrix-screen {
       display: none;
       position: fixed;
@@ -646,7 +646,7 @@
     <p>뭘 찾으려는 거죠?</p>
   </div>
 
-  <!-- 코드 입력 모달 -->
+
   <div class="code-modal" id="codeModal">
     <div class="code-box">
       <h3>ACCESS CODE</h3>
@@ -658,7 +658,7 @@
     </div>
   </div>
 
-  <!-- 매트릭스 화면 -->
+  
   <div class="matrix-screen" id="matrixScreen">
     <span class="matrix-close" onclick="_0xcloseMatrix()">×</span>
     <canvas class="matrix-rain" id="matrixCanvas"></canvas>
@@ -667,29 +667,28 @@
       <p class="matrix-subtitle">환자분의 개인정보는 수집되지 않습니다.</p>
       <input type="text" class="matrix-input" id="patientInput" placeholder="PATIENT ID" onkeyup="_0xcheckPatient(event)">
       
-      <!-- 환자 1 -->
+     
       <div class="patient-info" id="patient1">
-        <img src="" alt="Patient" class="patient-img">
-        <!-- 이미지: src="환자1이미지.jpg" -->
-        <h4>[환자명 입력]</h4>
-        <div class="diagnosis">[병명 입력]</div>
-        <div class="details">[자세한 특징 입력]</div>
+        <img src="ea1.png" class="patient-img">
+        <h4>에이(A)/h4>
+        <div class="diagnosis">애정결핍</div>
+        <div class="details">과도한 집착, 애정결핍</div>
       </div>
 
-      <!-- 환자 2 -->
+      
       <div class="patient-info" id="patient2">
-        <img src="" alt="Patient" class="patient-img">
-        <h4>[환자명 입력]</h4>
-        <div class="diagnosis">[병명 입력]</div>
-        <div class="details">[자세한 특징 입력]</div>
+        <img src="ea2.png" class="patient-img">
+        <h4>알(R)</h4>
+        <div class="diagnosis">조현병</div>
+        <div class="details">■■■라는 이름을 가진 사람이 본인과 함께 재판을 한다고 주장</div>
       </div>
 
-      <!-- 환자 3 -->
+      
       <div class="patient-info" id="patient3">
-        <img src="" alt="Patient" class="patient-img">
-        <h4>[환자명 입력]</h4>
-        <div class="diagnosis">[병명 입력]</div>
-        <div class="details">[자세한 특징 입력]</div>
+        <img src="ea3.png" class="patient-img">
+        <h4>제트(Z)</h4>
+        <div class="diagnosis">기억상실</div>
+        <div class="details">기억을 되찾지 않게 주의 요망</div>
       </div>
     </div>
   </div>
@@ -717,11 +716,6 @@
 
   <!-- 컨텐츠 -->
   <main class="content">
-    
-    <!-- ========================================
-         PURELIGHT 해답
-         구조: 글-사진-글-사진-글
-         ======================================== -->
     <div class="tab-content active" id="tab-purelight">
       <h2 class="section-title">PURELIGHT 해답</h2>
       
@@ -741,121 +735,133 @@
         <p>GREYMATTER의 태그 중 의미를 알 수 없는 4자리 영문 'CANI'가 존재합니다. 이를 직원코드에 입력시 숨겨진 공간으로 입장 가능합니다.</p>
       </div>
 
-      <!-- 다크모드에서만 보이는 숨겨진 텍스트 -->
-      <p class="dark-only-text">[다크모드 숨겨진 메시지 - 퓨어라이트]</p>
+     
+      <p class="dark-only-text">be ok - 1/7/2 1/4/1 2/1/2  4/8/1 3/17/2 5/6/4 1/20/2 2/3/3</p>
     </div>
 
-    <!-- ========================================
-         NEOSTAR 해답
-         구조: 글, 사진3개, 사진-글-사진-글
-         ======================================== -->
     <div class="tab-content" id="tab-neostar">
       <h2 class="section-title">NEOSTAR 해답</h2>
       
       <div class="text-block">
-        <h3>[해답 제목 1]</h3>
-        <p>[여기에 네오스타 해답 내용 1 입력]</p>
+        <p>네오스타 사이트에 들어가 댓글을 확인해볼시 삭제된 댓글이 아래와 같이 3개 존재합니다.</p>
       </div>
 
       <div class="image-row three">
-        <div class="img-placeholder">이미지 1</div>
-        <div class="img-placeholder">이미지 2</div>
-        <div class="img-placeholder">이미지 3</div>
-        <!-- 교체: <img src="neostar1.jpg"> -->
+        <img src="n1.png">
+        <img src="n2.png">
+        <img src="n3.png">
       </div>
 
-      <img src="" alt="해답 이미지" class="image-single">
+      <img src="n4.png" class="image-single">
 
       <div class="text-block">
-        <h3>[해답 제목 2]</h3>
-        <p>[여기에 네오스타 해답 내용 2 입력]</p>
+        <p>해당 댓글을 작성한 닉네임들을 모아 애너그램시 위와 같이 'CHECK STORY URL'이라는 문장이 나옵니다.</p>
       </div>
 
-      <img src="" alt="해답 이미지" class="image-single">
+      <img src="n5.png" class="image-single">
 
       <div class="text-block">
-        <h3>[해답 제목 3]</h3>
-        <p>[여기에 네오스타 해답 내용 3 입력]</p>
+        <p>'삭제된 메세지입니다'에서 공유버튼을 눌러 URL을 확인해볼시 "https://share.crack.wrtn.ai/vaie2r", 여기서 맨 뒤 6자리인 vaie2r을 사용해 코드 입력이 가능합니다.</p>
       </div>
 
-      <!-- 다크모드에서만 보이는 숨겨진 텍스트 -->
-      <p class="dark-only-text">[다크모드 숨겨진 메시지 - 네오스타]</p>
+      
+      <p class="dark-only-text">REBELLION.□□□□ □□□□□□.Wikipedia.English.Identifiers.Latin</p>
     </div>
 
-    <!-- ========================================
-         EDEN 해답
-         구조: 글-사진 반복 11번, 사진8개(4x2), 글-사진-글
-         ======================================== -->
+
     <div class="tab-content" id="tab-eden">
       <h2 class="section-title">EDEN 해답</h2>
       
       <div class="text-block">
-        <h3>[해답 제목 1]</h3>
-        <p>[여기에 에덴 해답 내용 1 입력]</p>
+        <h3>비밀번호 찾기</h3>
+        <p>사이트를 스크롤하다 보면 우측 상단에 어떤 글이 있음을 알수 있습니다. 복사해서 확인해볼시에 아래와 같은 암호를 얻을 수 있습니다.</p>
       </div>
-      <img src="" alt="해답 이미지 1" class="image-single">
+      <img src="e1.png" class="image-single">
 
       <div class="text-block">
-        <h3>[해답 제목 2]</h3>
-        <p>[여기에 에덴 해답 내용 2 입력]</p>
+        <p>WOLFPROS TENGILSFOLOWLSO
+5 19 22 9 16 7 14 21 2 1 10 6 8 4 17 3 18 20 13 11 12 15
+234=A
+760=B
+3.4=C
+568=C
+12=D
+8=E
+2.4=E
+12.3=E
+54=E
+1.8=H
+67=M
+45=R
+892=S
+127=R
+42=R
+492.4=Z
+89=W
+567=S
+89=T</p>
       </div>
-      <img src="" alt="해답 이미지 2" class="image-single">
+      <img src="e2.png" class="image-single">
 
       <div class="text-block">
-        <h3>[해답 제목 3]</h3>
-        <p>[여기에 에덴 해답 내용 3 입력]</p>
+        <p>네오스타에 가 각 계정의 포스트 수, 팔로워수, 팔로잉 수 확인시 아래와 같은 숫자를 얻을 수 있습니다.</p>
       </div>
-      <img src="" alt="해답 이미지 3" class="image-single">
+      <img src="e3.png" class="image-single">
 
       <div class="text-block">
-        <h3>[해답 제목 4]</h3>
-        <p>[여기에 에덴 해답 내용 4 입력]</p>
+        <p>89, 1.8, 8, 127, 2.4, 12, 45, 12.3, 234, 67, 892, 42, 54, 567, 89를 얻을수 있습니다. 위와 전에 얻은 암호를 통해 재조합시 "WHEREDREAMSREST"라는 비번을 획득 가능합니다.</p>
       </div>
-      <img src="" alt="해답 이미지 4" class="image-single">
+      <img src="e4.png" class="image-single">
 
       <div class="text-block">
-        <h3>[해답 제목 5]</h3>
-        <p>[여기에 에덴 해답 내용 5 입력]</p>
+        <h3>[아이디 찾기]</h3>
+        <p>뉴스 중 하단에 아래와 같이 정체불명의 암호가 존재합니다.</p>
       </div>
-      <img src="" alt="해답 이미지 5" class="image-single">
+      <img src="e5.png" class="image-single">
 
       <div class="text-block">
-        <h3>[해답 제목 6]</h3>
-        <p>[여기에 에덴 해답 내용 6 입력]</p>
+        <p>'hwhuqdodufklyh.3.194024049112154067237057'중 첫 단락을 시저 시프트(카이사르 암호), 키 값 3으로 풀면 "eternaarkhive"가 나옵니다./p>
+      </div>
+
+     <div class="text-block">
+        <h3</h3>
+        <p>이터널 아카이브(퓨어라이트 사이트에 숨겨진 공간)에 접속 후 3번째 단락의 숫자를 3자씩 끊어 보며 사이트의 알파벳과 대입하며 보면 "CANIREST"라는 아이디가 나옵니다.</p>
+      </div>
+      <img src="e6.png" class="image-single">
+      <img src="e7.png" class="image-single">
+
+      <div class="text-block">
+        <h3>[이스터에그]</h3>
+        <p>에덴 사이트 마법소녀의 이미지 링크 확인시 숨겨진 링크를 찾으실 수 있습니다.</p>
       </div>
 
       <!-- 이미지 8개 (4x2) -->
       <div class="image-row four">
-        <div class="img-placeholder">1</div>
-        <div class="img-placeholder">2</div>
-        <div class="img-placeholder">3</div>
-        <div class="img-placeholder">4</div>
+        <img src="ee1.png">
+        <img src="ee2.png">
+        <img src="ee3.png">
+        <img src="ee4.png">
       </div>
       <div class="image-row four">
-        <div class="img-placeholder">5</div>
-        <div class="img-placeholder">6</div>
-        <div class="img-placeholder">7</div>
-        <div class="img-placeholder">8</div>
+        <img src="ee5.png">
+        <img src="ee6.png">
+        <img src="ee7.png">
+        <img src="ee8.png">
       </div>
 
       <div class="text-block">
-        <h3>[해답 제목 7]</h3>
-        <p>[여기에 에덴 해답 내용 7 입력]</p>
+        <p>이미지 이름을 순서대로 조합시 아래의 링크를 얻을 수 있습니다.</p>
       </div>
-      <img src="" alt="해답 이미지" class="image-single">
+      <img src="e8.png" class="image-single">
 
-      <div class="text-block">
-        <h3>[해답 제목 8]</h3>
-        <p>[여기에 에덴 해답 내용 8 입력]</p>
-      </div>
-
-      <!-- 다크모드에서만 보이는 숨겨진 텍스트 -->
-      <p class="dark-only-text">[다크모드 숨겨진 메시지 - 에덴]</p>
+      
+      <p class="dark-only-text">Trace.000, 그들이 떠난 후.
+ee1.png ee2.png ○○○○○○</p>
     </div>
 
   </main>
 
-  <!-- 푸터 -->
+ 
   <footer>
     <div class="footer-info">
       made by scaredmole(luz_555)<br>
@@ -870,48 +876,54 @@
       [여기에 추가 텍스트 입력 - 아주 작게 표시됨]
     </div>
     
-    <!-- 숨겨진 매트릭스 입력창 (최하단 탭하면 나타남) -->
+    
     <div class="hidden-trigger" onclick="_0xshowHiddenInput()"></div>
     <div class="hidden-input-area" id="hiddenInputArea">
       <input type="text" class="hidden-matrix-input" id="hiddenMatrixInput" placeholder="..." onkeyup="_0xcheckHiddenInput(event)">
     </div>
   </footer>
 
-  <!-- 뉴스 기사 모달 (전원버튼 코드 입력 시) -->
+ 
   <div class="news-modal" id="newsModal">
     <div class="news-modal-content">
       <span class="news-close" onclick="_0xcloseNews()">×</span>
-      <h2 class="news-modal-title">[기사 제목 입력]</h2>
-      <img src="" alt="기사 이미지" class="news-modal-img">
+      <h2 class="news-modal-title">[단독] A구역 마법소녀 '김소희', 임무 중 돌연 폭주... 민간인 3명 사망</h2>
+      <img src="nw1.png" class="news-modal-img">
       <!-- 이미지: src="news-image.jpg" -->
       <div class="news-modal-body">
-        [여기에 기사 내용 입력]
+        지난 15일 오후 11시경, 서울 A구역에서 오염체 토벌 임무를 수행하던 B급 마법소녀 김소희(19)가 돌연 폭주하여 현장에 있던 민간인 3명이 사망하는 참사가 발생했다.
+목격자에 따르면 김소희는 임무 도중 갑자기 비명을 지르며 마력이 폭주하기 시작했으며, 통제 불능 상태에서 무차별적으로 마력을 방출한 것으로 알려졌다.
+에덴 본부는 즉시 S급 마법소녀 2명을 투입해 김소희를 제압했으나, 이미 민간인 피해가 발생한 이후였다. 김소희는 현재 에덴 본부 내 특수 시설로 이송되어 □□□ 것으로 전해진다.
+
+에덴 측은 "해당 사건에 대해 깊은 유감을 표하며, 유가족에게 진심으로 애도의 뜻을 전한다"라며 "폭주의 원인을 조사 중이며, 재발 방지를 위해 최선을 다하겠다"고 밝혔다.
+
+한편, 이번 사건으로 마법소녀의 정신 건강 관리 체계에 대한 비판 여론이 거세지고 있다. 일각에서는 "과도한 임무 배치가 원인"이라는 주장도 제기되고 있으나, 에덴 측은 이에 대해 "사실과 다르다"며 선을 그었다.
+사망한 민간인의 신원은 □□□□ 처리□□.
+
+김소희의 현재 상태와 향후 처분에 대해서는 추가 발표가 있을 예정이다.
+
+[기사 코드: PLT-2025-1215-0847-검열됨]
       </div>
     </div>
   </div>
 
   <script>
-    // ============================================================
-    // 🔒 난독화된 코드
-    // ============================================================
     
-    // 변수명 난독화
     var _0x5a8f=["\x6C\x69\x67\x68\x74","\x64\x61\x72\x6B","\x74\x68\x65\x6D\x65","\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x62\x6F\x64\x79","\x64\x61\x74\x61\x2D\x74\x68\x65\x6D\x65"];
     var _0x7c2d=["\x73\x68\x6F\x77","\x63\x6C\x61\x73\x73\x4C\x69\x73\x74"];
     
-    // 숨겨진 코드들 (난독화)
-    var _0xc0de = atob('c2lkZXNvbHV0aW9u'); // 코드 입력 정답
-    var _0xmus1c = ''; // 노래 링크 - 여기에 입력: 'https://youtube.com/...'
-    var _0xk3y = '\u110C\u1163\u11BC\u1105\u1162\u11B7\u1109\u1162\u11BC\u1100\u1173'; // 매트릭스 키
-    var _0xp4t1 = atob('anVuZ2h5ZXllb24='); // 환자1 아이디 - btoa('아이디')로 변환해서 입력
-    var _0xp4t2 = atob(''); // 환자2 아이디
-    var _0xp4t3 = atob(''); // 환자3 아이디
+    var _0xc0de = atob('d2VsY29tZXRvZWRlbg==');
+    var _0xmus1c = 'https://youtu.be/510YS6zUHOM?si=rVkGCJTp8VK6zENW';
+    var _0xk3y = '\u110C\u1163\u11BC\u1105\u1162\u11B7\u1109\u1162\u11BC\u1100\u1173';
+    var _0xp4t1 = atob('aWxvYmV5b3U=');
+    var _0xp4t2 = atob('c3Vic3RhbnRpYSBncmlzZWE=');
+    var _0xp4t3 = atob('bmY1Z2Zv');
     
-    // 키 입력 버퍼
+
     var _0xbuff = '';
     var _0xmatrixKey = 'ㅈ디채ㅡㄷ샏ㅇ두';
     
-    // F12 감지
+
     (function(){
       var _0xth = 160;
       var _0xopen = false;
@@ -932,7 +944,7 @@
       }, 500);
     })();
     
-    // 키보드 방지
+    
     document['\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72']('\x6B\x65\x79\x64\x6F\x77\x6E', function(e){
       if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'u')){
         e.preventDefault();
@@ -940,7 +952,7 @@
         setTimeout(function(){ document.getElementById('devtoolsWarning').classList.remove('show'); }, 2000);
       }
       
-      // 매트릭스 키 감지
+      
       _0xbuff += e.key;
       if(_0xbuff.length > 20) _0xbuff = _0xbuff.slice(-20);
       if(_0xbuff.includes(_0xmatrixKey)){
@@ -949,25 +961,21 @@
       }
     });
     
-    // 우클릭 방지
+    
     document['\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72']('\x63\x6F\x6E\x74\x65\x78\x74\x6D\x65\x6E\x75', function(e){ e.preventDefault(); });
     
-    // 콘솔 경고
+    
     console.log('%c⚠️', 'font-size:50px');
     console.log('%c뭘 찾으려는 거죠?', 'font-size:20px;color:#ff0000;');
     
-    // ============================================================
-    // 함수들
-    // ============================================================
-    
-    // 테마 토글
+  
     function _0xtheme(){
       var _0xb = document[_0x5a8f[5]];
       var _0xc = _0xb[_0x5a8f[4]](_0x5a8f[6]);
       _0xb[_0x5a8f[3]](_0x5a8f[6], _0xc === _0x5a8f[0] ? _0x5a8f[1] : _0x5a8f[0]);
     }
     
-    // 탭 전환
+    
     function _0xtab(id){
       document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
       document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
@@ -975,19 +983,19 @@
       document.getElementById('tab-' + id).classList.add('active');
     }
     
-    // 코드 모달 열기
+    
     function _0xopenCode(){
       document.getElementById('codeModal').classList.add('show');
       document.getElementById('codeInput').focus();
     }
     
-    // 코드 모달 닫기
+    
     function _0xclose(){
       document.getElementById('codeModal').classList.remove('show');
       document.getElementById('codeInput').value = '';
     }
     
-    // 코드 검증
+    
     function _0xverify(){
       var _0xin = document.getElementById('codeInput').value.toLowerCase();
       if(_0xin === _0xc0de){
@@ -999,17 +1007,17 @@
       }
     }
     
-    // 뉴스 모달 열기
+    
     function _0xopenNews(){
       document.getElementById('newsModal').classList.add('show');
     }
     
-    // 뉴스 모달 닫기
+    
     function _0xcloseNews(){
       document.getElementById('newsModal').classList.remove('show');
     }
     
-    // 숨겨진 입력창 표시 (푸터 최하단 탭)
+    
     function _0xshowHiddenInput(){
       var area = document.getElementById('hiddenInputArea');
       area.classList.toggle('show');
@@ -1018,7 +1026,7 @@
       }
     }
     
-    // 숨겨진 입력창에서 매트릭스 키 확인
+    
     function _0xcheckHiddenInput(e){
       if(e.key !== 'Enter') return;
       var val = document.getElementById('hiddenMatrixInput').value;
@@ -1029,7 +1037,7 @@
       }
     }
     
-    // 노래 링크
+    
     function _0xmusic(){
       if(_0xmus1c){
         window.open(_0xmus1c, '_blank');
@@ -1038,21 +1046,21 @@
       }
     }
     
-    // 매트릭스 화면 열기
+    
     function _0xopenMatrix(){
       document.getElementById('matrixScreen').classList.add('show');
       _0xinitMatrix();
       document.getElementById('patientInput').focus();
     }
     
-    // 매트릭스 화면 닫기
+    
     function _0xcloseMatrix(){
       document.getElementById('matrixScreen').classList.remove('show');
       document.querySelectorAll('.patient-info').forEach(function(p){ p.classList.remove('show'); });
       document.getElementById('patientInput').value = '';
     }
     
-    // 매트릭스 비 효과
+    
     function _0xinitMatrix(){
       var canvas = document.getElementById('matrixCanvas');
       var ctx = canvas.getContext('2d');
@@ -1086,8 +1094,7 @@
       
       document.querySelectorAll('.patient-info').forEach(function(p){ p.classList.remove('show'); });
       
-      // 환자 ID 체크 (난독화)
-      // 여기에 환자 아이디 설정: _0xp4t1, _0xp4t2, _0xp4t3 변수에 btoa('아이디') 형태로 입력
+      
       if(_0xp4t1 && _0xid === _0xp4t1){
         document.getElementById('patient1').classList.add('show');
       } else if(_0xp4t2 && _0xid === _0xp4t2){
@@ -1097,7 +1104,7 @@
       }
     }
     
-    // ESC로 모달 닫기
+  
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape'){
         _0xclose();
